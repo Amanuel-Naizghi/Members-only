@@ -6,13 +6,20 @@
 </head>
 <body>
   <h2>Register Page</h2>
+  <ul>
+    <% if (locals.errors) {%>
+        <% errors.forEach((error) => { %>
+          <li><%= error.msg %></li>
+        <% }); %>
+    <% } %>
+  </ul>
   <form action="/register" method="POST">
     <label for="firstName">First Name:</label>
-    <input name="firstName" type="text" placeholder="Aman" required>
+    <input name="firstName" type="text" placeholder="Aman" value="<%= locals.old?.firstName || '' %>" required>
     <label for="lastName">Last Name</label>
-    <input name="lastName" type="text" placeholder="Papa" required>
+    <input name="lastName" type="text" placeholder="Papa" value="<%= locals.old?.lastName || '' %>" required>
     <label for="userName">User Name</label>
-    <input name="userName" type="text" placeholder="A$D" required>
+    <input name="userName" type="text" placeholder="A$D" value="<%= locals.old?.userName || '' %>" required>
     <label for="password">Password</label>
     <input name="password" type="password" required>
     <label for="confirm">Confirm password</label>
