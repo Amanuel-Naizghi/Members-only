@@ -7,26 +7,31 @@ const lengthErr2 = "length must be more than 4 characters";
 
 const validateUser = [
     body("password").trim()
-    .isLength({min:8}).withMessage(`Password ${lengthErr1}`),
+    .isLength({min:8}).withMessage(`Password ${lengthErr1}`)
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])/)
+    .withMessage("Password must contain at least one letter, one number, and one special character")
+    .escape(),
 
-    body("confirmPassword")
+    body("confirmPassword").trim()
     .custom((value,{req}) =>{
         if(value !== req.body.password){
             throw new Error("Passwords do not match");
         }
         return true;
-    }),
+    }).escape(),
 
-    body("userName")
+    body("userName").trim()
     .isLength({min:4,max:10}).withMessage(`User name ${lengthErr2}`),
 
-    body("lastName")
+    body("lastName").trim()
     .custom((value,{req}) =>{
         if(value === req.body.firstName){
             throw new Error("First and last names could not be the same");
         }
         return true;
-    })
+    }).escape(),
+
+    body("firstName").trim().escape()
 ];
 
 exports.postAddUser = [
