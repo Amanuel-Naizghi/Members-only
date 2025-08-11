@@ -37,7 +37,7 @@ const validateUser = [
         return true;
     }).escape(),
 
-    body("firstName").trim().escape()
+    body("firstName").trim().escape(),
 ];
 
 exports.postAddUser = [

@@ -6,6 +6,9 @@
 </head>
 <body>
   <h2>Login page</h2>
+  <% if (error && error.length > 0) { %>
+    <p style="color: red;"><%= error[0] %></p>
+  <% } %>
   <form action="/login" method="post">
     <label for="userName">User Name:</label>
     <input type="text" name="userName">
