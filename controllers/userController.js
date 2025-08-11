@@ -20,8 +20,14 @@ const validateUser = [
         return true;
     }).escape(),
 
-    body("userName").trim()
-    .isLength({min:4,max:10}).withMessage(`User name ${lengthErr2}`),
+    body("userName").trim().toLowerCase()
+    .isLength({min:4,max:10}).withMessage(`User name ${lengthErr2}`)
+    .custom(async (value)=>{ //value is the same as req.body.userName
+        const user = await queries.getUser(value);
+        if(user){
+            throw new Error("User already exists");
+        }
+    }).escape(),
 
     body("lastName").trim()
     .custom((value,{req}) =>{
