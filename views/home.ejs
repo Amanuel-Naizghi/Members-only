@@ -8,5 +8,10 @@
   <h2>Home page</h2>
   <a href="/register">Register</a>
   <a href="/login">Login</a>
+  <% if (locals.data) {%>
+    <% data.forEach((data) => { %>
+      <li><%= data.firstname %></li>
+    <% }); %>
+  <% } %>
 </body>
 </html>

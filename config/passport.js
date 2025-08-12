@@ -9,7 +9,7 @@ module.exports = function(passport) {
             { usernameField: 'userName', passwordField: 'password' },
             async (userName, password, done) => {
                 try {
-                    const user = await queries.getUser(userName);
+                    const user = await queries.getUser(userName.toLowerCase());
                     if (!user) {
                         return done(null, false, { message: "Incorrect user name" });
                     }

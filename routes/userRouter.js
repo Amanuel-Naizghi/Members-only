@@ -2,9 +2,12 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const queries = require('../db/queries');
 
-router.get('/',(req,res) => {
-    res.render('home');
+router.get('/',async (req,res) => {
+    const data = await queries.getAllMessagesWithUsers();
+    console.log(data);
+    res.render('home',{data:data});
 });
 
 router.get('/register', (req,res) => {
