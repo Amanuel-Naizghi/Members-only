@@ -5,9 +5,11 @@ const userController = require("../controllers/userController");
 const queries = require('../db/queries');
 
 router.get('/',async (req,res) => {
-    const data = await queries.getAllMessagesWithUsers();
+    const data = await userController.getAllMessage();
     console.log(data);
-    res.render('home',{data:data});
+    res.render('home',{data:data,
+                       page:'Home'
+    });
 });
 
 router.get('/register', (req,res) => {

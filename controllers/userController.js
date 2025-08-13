@@ -54,4 +54,10 @@ exports.postAddUser = [
         await queries.addUser(data);
         res.redirect('/');
     }
-]
+];
+
+exports.getAllMessage = async () => {
+    const data = await queries.getAllMessagesWithUsers();
+
+    return data
+}

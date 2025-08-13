@@ -5,12 +5,20 @@
   <title>Home</title>
 </head>
 <body>
-  <h2>Home page</h2>
+  <h2><%= locals.page %></h2>
   <a href="/register">Register</a>
   <a href="/login">Login</a>
   <% if (locals.data) {%>
     <% data.forEach((data) => { %>
-      <li><%= data.firstname %></li>
+        <div class="message-container">
+            <p><%= data.message %></p>
+            <p><%= data.createdat %></p>
+            <% if (locals.page !== "VIP") {%>
+                <p>Anonymous</p>
+              <% } else { %>
+                <%= data.username %>
+            <% } %>
+        </div>
     <% }); %>
   <% } %>
 </body>

@@ -2,7 +2,14 @@ const pool = require('./pool');
 const bcrypt = require('bcryptjs');
 
 async function getAllMessagesWithUsers(){
-    const {rows} = await pool.query('SELECT u.firstName,u.lastName,m.message,m.createdAt FROM users u  JOIN messages m ON u.id = m.userId ORDER BY m.createdAt DESC');
+    const {rows} = await pool.query(`
+    SELECT 
+      u.userName,
+      m.message,
+      TO_CHAR(m.createdAt, 'Mon DD YYYY') AS createdAt
+    FROM messages m
+    JOIN users u ON m.userId = u.id
+  `);
 
     return rows;
 }
