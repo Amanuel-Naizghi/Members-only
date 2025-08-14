@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+</head>
+<body>
+    <a href="">Create a post</a>
+    <h2>Welcome <%= locals.user %></h2>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    <% if (locals.data) {%>
+        <% data.forEach((data) => { %>
+            <div class="message-container">
+                <p><%= data.message %></p>
+                <p><%= data.createdat %></p>
+                <% if (locals.page !== "VIP") {%>
+                    <p>Anonymous</p>
+                <% } else { %>
+                    <%= data.username %>
+                <% } %>
+            </div>
+        <% }); %>
+    <% } %>
+</body>
+</html>

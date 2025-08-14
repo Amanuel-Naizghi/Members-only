@@ -15,7 +15,7 @@ async function getAllMessagesWithUsers(){
 }
 
 async function addUser(data){
-    const hashedPassword = await bcrypt.hash(data.password,10)
+    const hashedPassword = await bcrypt.hash(data.password,10);
     await pool.query(`INSERT INTO users (firstName,lastName,userName,password)
                       VALUES ($1 ,$2 ,$3 ,$4) RETURNING *`,
                       [data.firstName,data.lastName,data.userName,hashedPassword]

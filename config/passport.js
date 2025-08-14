@@ -10,6 +10,7 @@ module.exports = function(passport) {
             async (userName, password, done) => {
                 try {
                     const user = await queries.getUser(userName.toLowerCase());
+                    console.log(user);
                     if (!user) {
                         return done(null, false, { message: "Incorrect user name" });
                     }
