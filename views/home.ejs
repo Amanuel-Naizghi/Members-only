@@ -11,6 +11,7 @@
   <% if (locals.data) {%>
     <% data.forEach((data) => { %>
         <div class="message-container">
+          <h3><%= data.title %></h3>
             <p><%= data.message %></p>
             <p><%= data.createdat %></p>
             <% if (locals.page !== "VIP") {%>

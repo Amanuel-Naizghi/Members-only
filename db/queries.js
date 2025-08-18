@@ -5,6 +5,7 @@ async function getAllMessagesWithUsers(){
     const {rows} = await pool.query(`
     SELECT 
       u.userName,
+      m.title,
       m.message,
       TO_CHAR(m.createdAt, 'Mon DD YYYY') AS createdAt
     FROM messages m
@@ -27,4 +28,10 @@ async function getUser(userName){
     return rows[0];
 }
 
-module.exports = {addUser,getUser,getAllMessagesWithUsers};
+async function addMessage(data,id){
+  await pool.query(`INSERT INTO messages (userId, title, message)
+                    VALUES ($1, $2, $3)`,
+                    [id,data.title,data.message])
+}
+
+module.exports = {addUser,getUser,getAllMessagesWithUsers,addMessage};

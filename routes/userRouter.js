@@ -7,7 +7,6 @@ const ensureAuthenticated = require('../middleware/ensureAuthenticated');
 
 router.get('/',async (req,res) => {
     const data = await userController.getAllMessage();
-    console.log(data);
     res.render('home',{data:data,
                        page:'Home'
     });
@@ -50,6 +49,16 @@ router.get('/user/:id', ensureAuthenticated, async (req,res) =>{
                        data:data
     });
 });
+
+router.get('/createPost',ensureAuthenticated,(req,res) => {
+    res.render("createPost");
+});
+
+router.post('/createPost',ensureAuthenticated, async (req,res) =>{
+    const data = req.body;
+    await userController.postMessage(data,req.user.id);
+   res.redirect(`/user/${req.user.id}`);
+})
 
 
 module.exports = router;

@@ -6,13 +6,14 @@
     <title>User</title>
 </head>
 <body>
-    <a href="">Create a post</a>
+    <a href="/createPost">Create a post</a>
     <h2>Welcome <%= locals.user %></h2>
     <a href="/register">Register</a>
     <a href="/login">Login</a>
     <% if (locals.data) {%>
         <% data.forEach((data) => { %>
             <div class="message-container">
+                <h3><%= data.title %></h3>
                 <p><%= data.message %></p>
                 <p><%= data.createdat %></p>
                 <% if (locals.page !== "VIP") {%>

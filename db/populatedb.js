@@ -23,6 +23,7 @@ const bcrypt = require("bcryptjs");
         id SERIAL PRIMARY KEY,
         userId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
         message TEXT NOT NULL,
+        title TEXT,
         createdAt DATE DEFAULT CURRENT_DATE
       );
     `);
@@ -46,19 +47,20 @@ const bcrypt = require("bcryptjs");
 
     // 5. Insert default messages
     await pool.query(
-      `INSERT INTO messages (userId, message)
+      `INSERT INTO messages (userId, title, message)
        VALUES
-       ($1, $2),
-       ($1, $3),
-       ($4, $5),
-       ($4, $6)`,
+       ($1, $2, $3),
+       ($1, $4, $5),
+       ($6, $7, $8),
+       ($6, $9, $10)`,
       [
-        amanId, 'Hello, this is Aman!',
-        'Aman again, testing messages.',
-        mossId, 'Hi, I am Moss.',
-        'I love building things.'
+        amanId, 'Intro', 'Hello, this is Aman!',
+        'Testing', 'Aman again, testing messages.',
+        mossId, 'Greetings', 'Hi, I am Moss.',
+        'My passion', 'I love building things.'
       ]
     );
+    
 
     console.log("✅ Database seeded successfully");
   } catch (err) {
