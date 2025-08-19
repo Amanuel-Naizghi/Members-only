@@ -74,4 +74,8 @@ exports.checkSecret = (userInput) => {
     return false;
 }
 
+exports.deleteMessage = async (id) => {
+    await queries.removeMessage(id);
+}
+
 

@@ -67,16 +67,28 @@ router.get('/checkAdmin',ensureAuthenticated,(req,res) => {
 router.post('/checkAdmin',ensureAuthenticated, async (req,res) => {
     const secretCode = userController.checkSecret(req.body.secret);
     if(secretCode){
-        const {rows} = await pool.query("SELECT username, firstname, lastname FROM users WHERE id = $1", [req.user.id]);
-        const data = await userController.getAllMessage();
-        res.render(`admin`,{user:rows[0].username,
-                                              data:data
-        });
+        res.redirect(`/admin/${req.user.id}`);
     }
     else{
         res.render(`checkAdmin`,{error:"Incorrect secret code"});
     }
 });
+
+router.get('/admin/:id', ensureAuthenticated, async (req,res) =>{
+    const {rows} = await pool.query("SELECT username, firstname, lastname FROM users WHERE id = $1", [req.user.id]);
+    const data = await userController.getAllMessage();
+    if(req.params.id != req.user.id){
+        return res.status(403).send("You cannot view another user's page.");
+    }
+    res.render(`admin`,{user:rows[0].username,
+        data:data
+    });
+});
+
+router.post('/:id/delete', ensureAuthenticated, async (req,res) => {
+    await userController.deleteMessage(req.params.id);
+    res.redirect(`/admin/${req.user.id}`);
+})
 
 
 module.exports = router;

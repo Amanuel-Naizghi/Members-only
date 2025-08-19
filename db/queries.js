@@ -7,6 +7,7 @@ async function getAllMessagesWithUsers(){
       u.userName,
       u.firstName,
       u.lastName,
+      m.id,
       m.title,
       m.message,
       TO_CHAR(m.createdAt, 'Mon DD YYYY') AS createdAt
@@ -36,4 +37,8 @@ async function addMessage(data,id){
                     [id,data.title,data.message])
 }
 
-module.exports = {addUser,getUser,getAllMessagesWithUsers,addMessage};
+async function removeMessage(id){
+  await pool.query(`DELETE FROM messages WHERE id = $1`,[id]);
+}
+
+module.exports = {addUser,getUser,getAllMessagesWithUsers,addMessage,removeMessage};
