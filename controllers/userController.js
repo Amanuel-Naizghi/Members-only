@@ -66,4 +66,12 @@ exports.getAllMessage = async () => {
     return data
 }
 
+exports.checkSecret = (userInput) => {
+    const secret = 'jesus';
+    if(userInput.trim().toLowerCase() === secret){
+        return true;
+    }
+    return false;
+}
+
 

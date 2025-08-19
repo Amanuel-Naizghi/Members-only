@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h2>Our secret formula ;) </h2>
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+  <form action="/checkAdmin" method="post">
+    <label for="secret">Source of life?</label>
+    <input type="text" name="secret" placeholder="El-shaday">
+    <button type="submit"> Login </button>
+  </form>
+</body>
+</html>

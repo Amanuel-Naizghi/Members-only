@@ -5,6 +5,8 @@ async function getAllMessagesWithUsers(){
     const {rows} = await pool.query(`
     SELECT 
       u.userName,
+      u.firstName,
+      u.lastName,
       m.title,
       m.message,
       TO_CHAR(m.createdAt, 'Mon DD YYYY') AS createdAt

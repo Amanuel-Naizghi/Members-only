@@ -58,7 +58,25 @@ router.post('/createPost',ensureAuthenticated, async (req,res) =>{
     const data = req.body;
     await userController.postMessage(data,req.user.id);
    res.redirect(`/user/${req.user.id}`);
-})
+});
+
+router.get('/checkAdmin',ensureAuthenticated,(req,res) => {
+    res.render("checkAdmin");
+});
+
+router.post('/checkAdmin',ensureAuthenticated, async (req,res) => {
+    const secretCode = userController.checkSecret(req.body.secret);
+    if(secretCode){
+        const {rows} = await pool.query("SELECT username, firstname, lastname FROM users WHERE id = $1", [req.user.id]);
+        const data = await userController.getAllMessage();
+        res.render(`admin`,{user:rows[0].username,
+                                              data:data
+        });
+    }
+    else{
+        res.render(`checkAdmin`,{error:"Incorrect secret code"});
+    }
+});
 
 
 module.exports = router;
