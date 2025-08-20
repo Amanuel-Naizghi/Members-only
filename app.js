@@ -25,6 +25,7 @@ app.use((req, res, next) => {
 
 const router = require("./routes/userRouter");
 app.use("/",router);
+app.use(express.static("public"));
 
   
 const PORT = 3000;

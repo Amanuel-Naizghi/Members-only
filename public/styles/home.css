@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "font1";
+    src: url('../fonts/RubikVinyl-Regular.ttf')format('truetype');
+}
+@font-face{
+    font-family: "font2";
+    src: url('../fonts/OpenSans-Light.ttf')format('truetype');
+}
+body{
+    background-color: rgb(42, 42, 42);
+    color:white;
+    padding:0;
+    margin:0;
+    font-family: "font2";
+}
+
+.home-page-container>.header-container{
+    background-color: rgb(82, 82, 82);
+    display:flex;
+    justify-content: space-between;
+    padding:0.5rem;
+}
+.home-page-container>hr{
+    margin:0;
+}
+.home-page-container>.header-container>.members-container{
+    display:flex;
+}
+.home-page-container>.header-container>.members-container>img{
+    margin:0.7rem 0.6rem 0 0;
+}
+.home-page-container>.header-container>.members-container>.logo-name{
+    font-family: "font1";
+    font-size:1.5rem;
+}
+.home-page-container>.header-container>.login-register-container{
+    display:flex;
+    padding: 1rem 0;
+}
+.home-page-container>.header-container>.login-register-container>a{
+    display:flex;
+    text-decoration: none;
+    border:1px solid white;
+    border-radius:10px;
+    color:white;
+    padding:0.3rem 0.2rem;
+    margin-right: 0.4rem;
+    align-items: center;
+}
+.home-page-container>.header-container>.login-register-container>a:hover{
+    background-color: rgb(130, 130, 130);
+}
+.home-page-container>.home-content-container{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+}
+.home-page-container>.home-content-container>.home-content-header{
+    display:flex;
+}
+.home-page-container>.home-content-container>.home-content-header>h2{
+    font-family:"font1";
+}
+.home-page-container>.home-content-container>.home-content-header>img{
+    margin:1.2rem 0.5rem;
+}
+.home-page-container>.home-content-container>.message-container{
+    border:1px solid white;
+    border-radius: 15px;
+    width:350px;
+    margin-bottom:1.2rem;
+    padding:0 0.7rem 0.7rem 0.7rem;
+}
+.home-page-container>.home-content-container>.message-container>.title-creator{
+    display:flex;
+    justify-content: space-between;
+}
+.home-page-container>.home-content-container>.message-container>.title-creator>p{
+    font-style: italic;
+    font-size:1rem;
+}
+.home-page-container>.home-content-container>.message-container>.date{
+    display:flex;
+    justify-content: flex-end;
+    font-size:0.8rem;
+    margin:0;
+}
+.home-page-container>.footer{
+    display:flex;
+    justify-content: center;
+}
