@@ -10,7 +10,7 @@ async function getAllMessagesWithUsers(){
       m.id,
       m.title,
       m.message,
-      TO_CHAR(m.createdAt, 'Mon DD YYYY') AS createdAt
+      TO_CHAR(createdAt, 'FMMonth DD YYYY HH24:MI') AS formatted_date
     FROM messages m
     JOIN users u ON m.userId = u.id
   `);
