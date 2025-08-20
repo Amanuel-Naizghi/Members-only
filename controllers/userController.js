@@ -43,15 +43,15 @@ const validateUser = [
 exports.postAddUser = [
     validateUser,
     async (req,res) => {
-        const errors = validationResult(req);
+        const errors = validationResult(req);//It goes through validateUser requirements and store errors if available
         if(!errors.isEmpty()){
             return res.render('register',{
-                errors:errors.array(),
-                old:req.body
+                errors:errors.array(),//Sends all validation errors as an array and display it in the register page
+                old:req.body//Used for putting the old inputs into where they were for a better UX
             });
         }
         const data = req.body;
-        await queries.addUser(data);
+        await queries.addUser(data);//If no error it inserts the data from the input into the db
         res.redirect('/');
     }
 ];
@@ -68,7 +68,7 @@ exports.getAllMessage = async () => {
 
 exports.checkSecret = (userInput) => {
     const secret = 'jesus';
-    if(userInput.trim().toLowerCase() === secret){
+    if(userInput.trim().toLowerCase() === secret){//Checks whether the user knows the secret key if yes user will have access to the admin page
         return true;
     }
     return false;

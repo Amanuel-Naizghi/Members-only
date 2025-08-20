@@ -21,11 +21,11 @@ router.post('/register', userController.postAddUser);
 router.get('/login', (req,res) => {
     res.render('login');
 });
-
+//User authentication is done after user try to login
 router.post('/login', 
             passport.authenticate("local",{
                 failureRedirect:"/login",
-                failureFlash: "Wrong user name or password"
+                failureFlash: "Wrong user name or password"//Used for showing message if the user inputs are not correct
             }),
             (req,res) => {
                 res.redirect(`/user/${req.user.id}`);
@@ -33,6 +33,7 @@ router.post('/login',
 );
 
 router.get('/user/:id', ensureAuthenticated, async (req,res) =>{
+    //Is used when user try to by pass the authentication part by typing the url like user/1
     if(req.params.id != req.user.id){
         return res.status(403).send("You cannot view another user's page.");
     }
@@ -66,7 +67,7 @@ router.get('/checkAdmin',ensureAuthenticated,(req,res) => {
 
 router.post('/checkAdmin',ensureAuthenticated, async (req,res) => {
     const secretCode = userController.checkSecret(req.body.secret);
-    if(secretCode){
+    if(secretCode){//Redirect the page to the admin page if the user knows the secret code
         res.redirect(`/admin/${req.user.id}`);
     }
     else{
