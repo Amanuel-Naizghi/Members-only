@@ -2,29 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
+  <title>Members Only</title>
+  <link rel="stylesheet" href="./styles/register.css">
 </head>
 <body>
-  <h2>Register Page</h2>
-  <ul>
-    <% if (locals.errors) {%>
-        <% errors.forEach((error) => { %>
-          <li><%= error.msg %></li>
-        <% }); %>
-    <% } %>
-  </ul>
-  <form action="/register" method="POST">
-    <label for="firstName">First Name:</label>
-    <input name="firstName" type="text" placeholder="Aman" value="<%= locals.old?.firstName || '' %>" required>
-    <label for="lastName">Last Name</label>
-    <input name="lastName" type="text" placeholder="Papa" value="<%= locals.old?.lastName || '' %>" required>
-    <label for="userName">User Name</label>
-    <input name="userName" type="text" placeholder="A$D" value="<%= locals.old?.userName || '' %>" required>
-    <label for="password">Password</label>
-    <input name="password" type="password" required>
-    <label for="confirm">Confirm password</label>
-    <input name="confirmPassword" type="password" required>
-    <button type="submit">Sign up</button>
-  </form>
+  <div class="register-page-container">
+    <div class="header-container">
+        <img src="./images/members.png" alt="Members" width="50px" height="50px">
+        <p class="logo-name">Members Only</p>
+    </div>
+    <hr>
+    <div class="register-content-container">
+      <div class="register-content-header">
+        <img src="./images/register.png" alt="Home" width="25px" height="25px">
+        <h2>Register</h2>
+      </div>
+      
+      <ul class="error-container">
+        <% if (locals.errors) {%>
+            <% errors.forEach((error) => { %>
+              <li class="error-item"><%= error.msg %></li>
+            <% }); %>
+        <% } %>
+      </ul>
+      <form action="/register" method="POST">
+        <label for="firstName">First Name:</label>
+        <input name="firstName" type="text" placeholder="Aman" value="<%= locals.old?.firstName || '' %>" required>
+        <label for="lastName">Last Name:</label>
+        <input name="lastName" type="text" placeholder="Papa" value="<%= locals.old?.lastName || '' %>" required>
+        <label for="userName">User Name:</label>
+        <input name="userName" type="text" placeholder="A$D" value="<%= locals.old?.userName || '' %>" required>
+        <label for="password">Password:</label>
+        <input name="password" type="password" required>
+        <label for="confirm">Confirm password:</label>
+        <input name="confirmPassword" type="password" required>
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+    <hr>
+    <div class='footer'>
+      <p>© 2025 Amanuel Tesfatsion (The Odin Projects) All rights reserved.</p>
+    </div>
+  </div>
 </body>
 </html>
