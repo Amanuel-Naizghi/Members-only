@@ -2,20 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./styles/login.css">
   <title>Members Only</title>
 </head>
 <body>
-  <h2>Login page</h2>
-  <% if (error && error.length > 0) { %>
-    <p style="color: red;"><%= error[0] %></p>
-  <% } %>
-  <form action="/login" method="post">
-    <label for="userName">User Name:</label>
-    <input type="text" name="userName">
-    <label for="password">Password:</label>
-    <input type="password" name="password">
-    <button type="submit"> Login </button>
-    <a href="/">Return home</a>
-  </form>
+  <div class="login-page-container">
+    <div class="header-container">
+      <img src="./images/members.png" alt="Members" width="50px" height="50px">
+      <p class="logo-name">Members Only</p>
+    </div>
+    <hr>
+    <div class="login-content-container">
+      <h2>Login</h2>
+      <% if (error && error.length > 0) { %>
+        <p><%= error[0] %></p>
+      <% } %>
+      <form action="/login" method="post">
+        <label for="userName">User Name:</label>
+        <input type="text" name="userName">
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+        <button type="submit"> Login </button>
+      </form>
+      <a href="/">⬅️ Return home</a>
+    </div>
+  </div>
 </body>
 </html>
