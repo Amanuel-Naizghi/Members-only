@@ -10,8 +10,6 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 
-const session = require("express-session");
-
 app.use(session({
   secret: process.env.SESSION_SECRET,  // 👈 this is the one
   resave: false,
