@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("node:path");
 const session = require("express-session");
+const pgSession = require('connect-pg-simple')(session);
 const passport = require("passport");
 require("./config/passport")(passport);
 const flash = require("connect-flash");
@@ -10,11 +11,18 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,  // 👈 this is the one
-  resave: false,
-  saveUninitialized: false,
-}));
+
+app.use(
+  session({
+    store: new pgSession({
+      pool: pool, // your postgres pool
+      tableName: 'session'
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: false }));
