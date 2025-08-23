@@ -1,7 +1,9 @@
+require("dotenv").config();
+console.log("Loaded DATABASE_URL:", process.env.DATABASE_URL);
 const pool = require("./pool");
 const bcrypt = require("bcryptjs");
 
-(async () => {
+async function seed() {
   try {
     // 1. Drop tables if they exist (in the right order: messages first, then users)
     await pool.query(`DROP TABLE IF EXISTS messages;`);
@@ -68,4 +70,6 @@ const bcrypt = require("bcryptjs");
   } finally {
     await pool.end();
   }
-})();
+}
+
+seed();
