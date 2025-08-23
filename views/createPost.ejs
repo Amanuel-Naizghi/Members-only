@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members Only</title>
+    <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
-    <form action="/createPost" method="post">
-        <input type="text" name="title" placeholder="Title">
-        <input type="text" name="message" placeholder="Message">
-        <button type="submit">Submit</button>
-        <a href="javascript:history.back()">Cancel</a>
-    </form>
+    <div class="login-page-container">
+        <div class="header-container">
+          <img src="./images/members.png" alt="Members" width="50px" height="50px">
+          <p class="logo-name">Members Only</p>
+        </div>
+        <hr>
+        <div class="login-content-container">
+          <h2>Create you post here</h2>
+          <form action="/createPost" method="post">
+            <input type="text" name="title" placeholder="Title">
+            <textarea type="text" name="message" placeholder="Message"></textarea>
+            <div>
+                <button type="submit">Submit</button>
+                <a href="javascript:history.back()">Cancel</a>
+            </div>
+        </form>
+          <a href="/">⬅️ Return home</a>
+        </div>
+      </div>
 </body>
 </html>

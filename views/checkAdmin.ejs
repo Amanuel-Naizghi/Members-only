@@ -3,16 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Members Only</title>
+  <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
-  <h2>Our secret formula ;) </h2>
-  <% if (error) { %>
-    <p style="color: red;"><%= error %></p>
-  <% } %>
-  <form action="/checkAdmin" method="post">
-    <label for="secret">Source of life?</label>
-    <input type="text" name="secret" placeholder="El-shaday">
-    <button type="submit"> Login </button>
-  </form>
+  <div class="login-page-container">
+    <div class="header-container">
+      <img src="./images/members.png" alt="Members" width="50px" height="50px">
+      <p class="logo-name">Members Only</p>
+    </div>
+    <hr>
+    <div class="login-content-container">
+      <h2>Our secret formula ;)</h2>
+      <% if (error && error.length > 0) { %>
+        <p><%= error[0] %></p>
+      <% } %>
+      <form action="/checkAdmin" method="post">
+        <label for="secret">Source of life?</label>
+        <input type="text" name="secret" placeholder="El-shaday">
+        <button type="submit"> Login </button>
+      </form>
+      <a href="/">⬅️ Return home</a>
+    </div>
+  </div>
 </body>
 </html>
