@@ -9,13 +9,20 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.set("trust proxy", 1); // trust first proxy (Render uses a proxy)
 app.use(
   session({
-    secret: process.env.SESSION_SECRET, // 👈 MUST be set
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // send cookies only over HTTPS
+      httpOnly: true,
+      sameSite: "lax",
+    },
   })
 );
+
 
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: false }));
