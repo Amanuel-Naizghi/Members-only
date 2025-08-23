@@ -19,7 +19,6 @@ app.use(session({
 }));
 
 app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 //For showing login error if user input doesn't exist
 app.use(flash());
