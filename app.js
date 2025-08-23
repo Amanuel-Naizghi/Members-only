@@ -9,12 +9,13 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-
-app.use(session({
-  secret: process.env.SESSION_SECRET,  // 👈 this is the one
-  resave: false,
-  saveUninitialized: false,
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // 👈 MUST be set
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: false }));
@@ -33,4 +34,5 @@ app.use(express.static("public"));
 
   
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`You are running on port ${PORT}`));
 app.listen(PORT, () => console.log(`You are running on port ${PORT}`));
