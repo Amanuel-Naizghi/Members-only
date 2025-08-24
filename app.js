@@ -26,6 +26,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.session());
 //For showing login error if user input doesn't exist
 app.use(flash());
 app.use((req, res, next) => {
@@ -41,5 +42,5 @@ app.use(express.static("public"));
 
   
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`You are running on port ${PORT}`));
+
 app.listen(PORT, () => console.log(`You are running on port ${PORT}`));
